@@ -5,7 +5,7 @@ def call(Map config = [:]) {
     // Variable de entorno para la rama (Ejercicio 4) 
     def branchName = env.BRANCH_NAME ?: "unknown"
 
-    // Timeout de 5 minutos [cite: 169]
+    // Timeout de 5 minutos
     timeout(time: 5, unit: 'MINUTES') { 
         script {
             // Imprime el mensaje de ejecución

@@ -2,6 +2,9 @@
 
 pipeline {
     agent any
+    environment {
+        BRANCH_NAME = 'main'
+    }
     stages {
         stage('Análisis de Calidad') { 
             steps {

@@ -5,6 +5,8 @@ def call(Map config = [:]) {
     // Variable de entorno para la rama (Ejercicio 4) 
     def branchName = env.BRANCH_NAME ?: "unknown"
     def sonarServer = 'SonarQubeServer'
+    def scannerHome = tool 'sonar-scanner'
+
 
 
     // Timeout de 5 minutos
@@ -12,7 +14,7 @@ def call(Map config = [:]) {
         script {
             withSonarQubeEnv(sonarServer) {
                 echo "Iniciando análisis de calidad con SonarScanner..."
-                sh "sonar-scanner -Dsonar.projectKey=practica_2_johany_flores -Dsonar.sources=."
+                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=practica_2_johany_flores -Dsonar.sources=."
             }
            
             // Resultadod del QualityGate

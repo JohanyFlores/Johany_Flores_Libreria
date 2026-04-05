@@ -1,15 +1,16 @@
+//staticAnalysis.groovy
+
 def call(Map config = [:]) {
-    // Extraemos el valor de forma explícita para evitar errores de transformación
     def shouldAbort = config.abortPipeline ?: false
 
-    // Mantenemos el timeout de 5 minutos [cite: 169]
+    // Timeout de 5 minutos
     timeout(time: 5, unit: 'MINUTES') {
-        // En Jenkins Pipeline, es mejor envolver la lógica en un bloque script
+
         script {
-            // Requisito: Imprimir el mensaje de ejecución [cite: 171]
+            // Imprime el mensaje de ejecución
             sh 'echo "Ejecución de las pruebas de calidad de código"'
             
-            // Lógica de decisión [cite: 178, 179]
+            // Lógica de decisión
             if (shouldAbort == true) {
                 echo "Quality Gate fallido. Abortando pipeline..."
                 error "Pipeline detenido por fallo en análisis estático."
